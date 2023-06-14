@@ -1,0 +1,29 @@
+﻿@*model EscuelaBase*@
+
+
+@{
+
+    var listaColores = new List<string>()
+    {
+        "alert alert-primary",
+        "alert alert-danger",
+        "alert alert-success",
+        "alert alert-warning",
+        "alert alert-info",
+
+
+
+    };
+    Random rnd = new Random();
+
+    int i = rnd.Next(0, listaColores.Count);
+    string color = listaColores[i];
+}
+
+
+
+<div class="@color">
+	<p>Nombre: @Model.Nombre</p>
+	<p>ID: @Model.Id</p>
+</div>
+

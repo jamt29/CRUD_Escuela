@@ -1,0 +1,39 @@
+﻿@*model List<EscuelaBase>*@
+
+
+<table class="table table-bordered border-primary">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">ID</th>
+        <th scope="col">Accion</th>
+      </tr>
+ </thead>
+      <tbody class="table-group-divider">
+            @foreach (var obj in Model)
+            {
+       
+             <tr>
+                 <th scope="col" style="font-family:'Agency FB'">@obj.Nombre</th>
+                  <th scope="col">@obj.Id</th> 
+                  @*
+
+                  <th scope="col">
+                      <button type="submit" class="btn btn-warning" id="editar" >Modificar</button>
+                      <button type="submit" class="btn btn-danger" id="borrar">Eliminar</button>
+                  </th> 
+
+                  *@
+                  <th>
+
+                    @Html.ActionLink("Editar", "Crear", "Curso", new{cursoId = obj.Id} ,new{@class = "btn btn-warning"})
+                    @Html.ActionLink("Borrar", "Borrar", "Curso", new{cursoId = obj.Id} ,new{@class = "btn btn-danger"})
+
+                  </th>
+
+            </tr>
+            }
+        </tbody>
+
+</table>
+     

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<WebEscuela.Models.Evaluacion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Evaluaciones</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info">Agregar nueva evaluacion</a>
+</p>
+
+<div class="container" style="display: flex;">
+    <input type="text" id="txtFiltro" oninput="filtro()" class="form-control" placeholder="Buscar" style="width: 200px"/>
+    <button onclick="filtro()" class="btn btn-outline-primary">Filtrar</button>
+</div>
+
+<table class="table table-bordered" style="text-align: center" id="tablaEvaluaciones">
+    <thead class="table-info">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Alumno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asignatura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota)
+            </th>
+            @*
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+
+            *@
+            <th>
+                Acciónes
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alumno.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asignatura.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nota)
+            </td>
+            @*
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            *@
+            <td>
+               <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a> 
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a> 
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<a asp-controller="Evaluacion" asp-action="PrintPdf" class="btn btn-outline-secondary">Descargar Evaluaciones</a>
+
+
+@section Scripts{
+
+    <script>
+
+        function filtro(){
+            var filtro = document.getElementById('txtFIltro').value.toLowerCase();
+            var table = document.getElementById('tablaEvaluaciones');
+            var rows = document.getElementsByTagName('tr');
+
+
+            for (var i = 1; i < rows.length; i++ ){
+                var row = rows[i];
+                var cell = row.getElementsByTagName('td')[i];
+
+                if(cell.innerHTML.toLowerCase().includes(filtro)){
+                    row.style.display = '';
+                } else{
+                    row.style.display = 'none';
+                }
+            }
+        }
+
+    </script>
+
+}

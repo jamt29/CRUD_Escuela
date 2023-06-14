@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebEscuela.Models.Curso>
+
+    @{
+    ViewBag.HideNavbar = true;
+}
+
+<h1 style="text-align: center">Cursos</h1>
+
+
+<table class="table table-bordered" style="text-align: center">
+    <thead class="table-info">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Escuela)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jornada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Escuela.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jornada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+           
+        </tr>
+}
+    </tbody>
+</table>
+
+
+@{
+    ViewBag.OcultarFooter = true;
+}

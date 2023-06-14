@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebEscuela.Models.Escuela>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center">Escuelas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info">Agregar nueva escuela</a>
+</p>
+<table class="table table-bordered" style="text-align: center">
+    <thead class="table-info">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Fundacion)
+            </th>
+            <th style="vertical-align: middle">
+                <p>Tipo de escuela</p>
+                @*Html.DisplayNameFor(model => model.AtributoTipoDeEscuela)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fundacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AtributoTipoDeEscuela)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Editar</a> 
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Detalles</a> 
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+                
+<a asp-controller="Escuela" asp-action="PrintPdf" class="btn btn-outline-secondary">Descargar tabla</a>
+
